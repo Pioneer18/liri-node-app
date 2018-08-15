@@ -16,5 +16,6 @@ If the user only enters the `spotify-this-song` command and does not specify a s
 
 
 command #2  `movie-this` commands LIRI to return a plot overview as well as details about the actors and production of the requested film. 
+
 <img src="https://media.giphy.com/media/kG8biFz9xx0yluJXOd/giphy.gif" width="600" height="200">
 
