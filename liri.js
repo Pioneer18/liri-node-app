@@ -99,10 +99,11 @@ var mySpotify = function(songName){
 var myMovie = function(functionData){
     console.log(functionData);
     //setup the query url with the passed in movie name and api key = trilogy
-    var queryURL = "http://www.omdbapi.com/?t=" + functionData + "trilogy";
+    var queryURL = "http://www.omdbapi.com/?t=" + functionData + "&apikey=trilogy";
 
     //now make the HTTP REQUEST  with the queryURL
     request(queryURL, function(error, response, body){
+        console.log(response.statusCode);
         //if for some reason user did not enter a movie or spelled it horribly wrong default to Mr. Nobody
         if(functionData === undefined){
             request("http://www.omdbapi.com/?t=mr+nobody&apikey=trilogy", function(error,response,body){
@@ -119,11 +120,11 @@ var myMovie = function(functionData){
             //nicely parse it all out
             log(chalk.redBright("Movie: ") + JSON.parse(body).Title);
             log(chalk.green("Release Year: ") + JSON.parse(body).year);
-            log(chalk.green("IMDB Ratings: ") + JSON.parse(body).imdbRating);
-            log(chalk.green("Rotten Tomatoes: ") + JSON.parse(body).Ratings[1].Value);
-            log(chalk.green("Country of production: ") + JSON.parse(body).Country);
-            log(chalk.green("Language: ") + JSON.parse(body).Language);
-            log(chalk.green("Plot: ") + JSON.parse(body).Plot);
+            log(chalk.yellow("IMDB Ratings: ") + JSON.parse(body).imdbRating);
+            log(chalk.pink("Rotten Tomatoes: ") + JSON.parse(body).Ratings[1].Value);
+            log(chalk.blue("Country of production: ") + JSON.parse(body).Country);
+            log(chalk.magenta("Language: ") + JSON.parse(body).Language);
+            log(chalk.red("Plot: ") + JSON.parse(body).Plot);
             log(chalk.green("Actors: ") + JSON.parse(body).Actors);
         }
     });
