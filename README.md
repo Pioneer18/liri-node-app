@@ -3,7 +3,7 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 
 LIRI takes 4 basic command pairs and logs the response to the Terminal
 
-Command #1 `spotify-this-song` `_name_of_song`, this will command LIRI to call the node-spotify-api and then grab  the artist(s), song name, and link to a preview of the song (if available).
+Command #1 `spotify-this-song` `_name_of_song`, will command LIRI to call the node-spotify-api for the name of the song entered after the command. LIRI will return  the artist(s) of the song, the title, and a link to a preview of the song (if available).
 
 <img src="https://media.giphy.com/media/vwQz6tQnjMwSSOdp7x/giphy.gif" width="600" height="200">
 
