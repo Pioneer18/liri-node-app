@@ -55,6 +55,12 @@ var pick = function(caseData, functionData){
 //make the functions that call the spotify api, omdb api, and call the fs module
 
 
+//to get the artist name out of Artists, we can use a clever js method called .map(function_name) that will loop each
+//item in an array, which is what songs[i].artists is, and then call a function on each index in the looped array
+var getArtistName = function(bananas){//you can put anything in here
+    return bananas.name; //then attach the name of the prop u wanna get out of the Artists array
+}
+
 
 //node-spotify-api function
 var mySpotify = function(songName){
@@ -79,15 +85,45 @@ var mySpotify = function(songName){
         for(var i = 0; i < songs.length; i++){
             console.log(i);
             //grab the artists name 
-            log(chalk.blue("artist(s): ") + chalk.red(songs[i].artists.name));
+            log(chalk.blue("artist(s): ") + chalk.red(songs[i].artists.map(getArtistName)));
             //grab the song name
             log(chalk.green("song name: ") + chalk.red(songs[i].name));
             //grab the preview link
             log(chalk.yellow("preview of song: ") + chalk.grey(songs[i].preview_url));
-            log(songs.artists);
-
         }
+    });    
+}
 
+//call the omdb api with the agr2 the user gave to LIRI
+var myMovie = function(functionData){
+    //setup the query url with the passed in movie name and api key = trilogy
+    var queryURL = "http://www.omdbapi.com/?t=" + functionData + "trilogy";
+
+    //now make the HTTP REQUEST  with the queryURL
+    request(queryURL, function(error, response, body){
+        //if for some reason user did not enter a movie or spelled it horribly wrong default to Mr. Nobody
+        if(functionData === undefined){
+            request("http://www.omdbapi.com/?t=mr+nobody&apikey=trilogy", function(error,response,body){
+                //if there is no error and the http status code is 200; which is ok
+                if(!error && response.statusCode === 200){
+                    //now make a JSON.parse onto the body so we can read it, then space it out with the 4, null on the reviver?
+                    console.log(JSON.parse(body),null, 4);
+                }
+            });
+        }
+        //if user did pass in a movie name then call the api with that
+        //also build out a nice terminal log since we care about these results bit more
+        if(!error && response.statusCode === 200){
+            //nicely parse it all out
+            log(chalk.redBright("Movie: ") + JSON.parse(body).Title);
+            log(chalk.green("Release Year: ") + JSON.parse(body).year);
+            log(chalk.green("IMDB Ratings: ") + JSON.parse(body).imdbRating);
+            log(chalk.green("Rotten Tomatoes: ") + JSON.parse(body).Ratings);
+            log(chalk.green("Country of production: ") + JSON.parse(body).Country);
+            log(chalk.green("Language: ") + JSON.parse(body).Language);
+            log(chalk.green("Plot: ") + JSON.parse(body).Plot);
+            log(chalk.green("Actors: ") + JSON.parse(body).Actors);
+        }
     });
 }
 
