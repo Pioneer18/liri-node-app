@@ -48,6 +48,7 @@ var pick = function(caseData, functionData){
     }
 
 }
+run(arg1,arg2);
 
 //=======================================================================
 //make the functions that call the spotify api, omdb api, and call the fs module
