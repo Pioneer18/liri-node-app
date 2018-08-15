@@ -9,7 +9,8 @@ var keys = require("./keys.js");
 //lets add some text color to the command line in terminal
 var chalk = require("chalk");
 //this little binding is reccommended by chalk on npm, but does not look neccessary. just some shorthand
-var log = console.log;
+var log = console.log
+;
 
 //initialize the spotify api with the keys so we call it later| if twitter was used do it here too
 //create a new Spotify object with the keys stored in keys.js
@@ -48,7 +49,7 @@ var pick = function(caseData, functionData){
     }
 
 }
-run(arg1,arg2);
+
 
 //=======================================================================
 //make the functions that call the spotify api, omdb api, and call the fs module
@@ -83,8 +84,11 @@ var mySpotify = function(songName){
             log(chalk.green("song name: ") + chalk.red(songs[i].name));
             //grab the preview link
             log(chalk.yellow("preview of song: ") + chalk.grey(songs[i].preview_url));
+            log(songs.artists);
 
         }
 
     });
 }
+
+run(arg1,arg2);
