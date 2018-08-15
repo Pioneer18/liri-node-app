@@ -19,3 +19,9 @@ command #2:  `movie-this` commands LIRI to return a plot overview as well as det
 
 <img src="https://media.giphy.com/media/kG8biFz9xx0yluJXOd/giphy.gif" width="600" height="200">
 
+If the user does not specify a movie title after the `movie-this` command, LIRI will default query spotify for the movie "Mr. Nobody"
+
+<img src="https://media.giphy.com/media/4WEKQ60xIdXg4QTBDx/giphy.gif" width="600" height="200">
+
+
+
