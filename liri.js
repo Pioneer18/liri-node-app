@@ -38,7 +38,8 @@ var pick = function(caseData, functionData){
             break;
         //call the omdb movie api
         case "movie-this":
-            myMovie();
+            myMovie(functionData);
+            break;
         //call the fs module functionality to read/write from files
         case "do-what-it-says":
             fsThis();
@@ -96,6 +97,7 @@ var mySpotify = function(songName){
 
 //call the omdb api with the agr2 the user gave to LIRI
 var myMovie = function(functionData){
+    console.log(functionData);
     //setup the query url with the passed in movie name and api key = trilogy
     var queryURL = "http://www.omdbapi.com/?t=" + functionData + "trilogy";
 
@@ -118,7 +120,7 @@ var myMovie = function(functionData){
             log(chalk.redBright("Movie: ") + JSON.parse(body).Title);
             log(chalk.green("Release Year: ") + JSON.parse(body).year);
             log(chalk.green("IMDB Ratings: ") + JSON.parse(body).imdbRating);
-            log(chalk.green("Rotten Tomatoes: ") + JSON.parse(body).Ratings);
+            log(chalk.green("Rotten Tomatoes: ") + JSON.parse(body).Ratings[1].Value);
             log(chalk.green("Country of production: ") + JSON.parse(body).Country);
             log(chalk.green("Language: ") + JSON.parse(body).Language);
             log(chalk.green("Plot: ") + JSON.parse(body).Plot);
